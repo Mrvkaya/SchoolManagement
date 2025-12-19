@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="SchoolManagement/SchoolManagement.csproj" />
+  <Project Path="SMIS.BLL/SMIS.BLL.csproj" />
+  <Project Path="SMIS.DAL/SMIS.DAL.csproj" />
+  <Project Path="SMIS.Entities/SMIS.Entities.csproj" />
+  <Project Path="SMIS.UI/SMIS.UI.csproj" />
 </Solution>
