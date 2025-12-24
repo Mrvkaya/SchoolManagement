@@ -31,14 +31,22 @@ namespace SMIS.UI.Controllers
                 return Content("Kullanıcı bulunamadı");
             }
 
-            return user.Role switch
+            if (user.Role == UserRole.Admin)
             {
-                UserRole.Admin => RedirectToAction("Index", "Admin"),
-                UserRole.Teacher => RedirectToAction("Index", "Teacher"),
-                UserRole.Student => RedirectToAction("Index", "Student"),
-                _ => Content("Geçersiz rol")
-            };
+                return RedirectToAction("Index", "Admin");
+            }
+            else if (user.Role == UserRole.Student)
+            {
+                return RedirectToAction("Index", "Student");
+            }
+            else if (user.Role == UserRole.Teacher)
+            {
+                return RedirectToAction("Index", "Teacher");
+            }
+
+            return Content("Rol tanımlı değil");
         }
+        
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
