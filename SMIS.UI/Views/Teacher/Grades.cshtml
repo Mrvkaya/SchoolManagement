@@ -1,0 +1,36 @@
+﻿@model List<SMIS.Entities.Models.User>
+
+<h2>Not Girişi</h2>
+
+<form asp-action="SaveGrades" method="post">
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Öğrenci</th>
+            <th>Ders</th>
+            <th>Not</th>
+        </tr>
+
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Username</td>
+                <td>
+                    <input type="text"
+                           name="LessonName[@student.Id]"
+                           placeholder="Ders adı"
+                           required />
+                </td>
+                <td>
+                    <input type="number"
+                           name="Score[@student.Id]"
+                           min="0"
+                           max="100"
+                           required />
+                </td>
+            </tr>
+        }
+    </table>
+
+    <br />
+    <button type="submit">Notları Kaydet</button>
+</form>

@@ -1,16 +1,18 @@
-﻿<h2> Notlarım</h2>
+﻿@model List<SMIS.Entities.Models.Grade>
 
-<table border="1">
+<h2>Notlarım</h2>
+
+<table border="1" cellpadding="8">
     <tr>
         <th>Ders</th>
         <th>Not</th>
     </tr>
-    <tr>
-        <td>Matematik</td>
-        <td>85</td>
-    </tr>
-    <tr>
-        <td>Fizik</td>
-        <td>90</td>
-    </tr>
+
+    @foreach (var grade in Model)
+    {
+        <tr>
+            <td>@grade.LessonName</td>
+            <td>@grade.Score</td>
+        </tr>
+    }
 </table>

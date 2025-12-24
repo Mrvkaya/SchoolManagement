@@ -25,6 +25,8 @@ namespace SMIS.UI.Controllers
         {
             var user = _context.Users
                 .FirstOrDefault(x => x.Username == username && x.Password == password);
+            HttpContext.Session.SetString("UserId", user.Id.ToString());
+            HttpContext.Session.SetString("Role", user.Role.ToString());
 
             if (user == null)
             {
@@ -46,7 +48,7 @@ namespace SMIS.UI.Controllers
 
             return Content("Rol tanımlı değil");
         }
-        
+
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();

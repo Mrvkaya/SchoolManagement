@@ -1,4 +1,27 @@
-﻿<h1>Admin Panel</h1>
+﻿@model List<SMIS.Entities.Models.User>
+
+<h1>Admin Panel</h1>
+
+<h3>Kullanıcılar</h3>
+
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>İsim</th>
+        <th>Yetki</th>
+    </tr>
+
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Username</td>
+            <td>@user.Role</td>
+        </tr>
+    }
+</table>
+
+
+
 <a href="/Account/Logout" style="color:red;">🚪 Logout</a>
 
 
