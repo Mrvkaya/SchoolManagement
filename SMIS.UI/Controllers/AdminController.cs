@@ -17,5 +17,11 @@ namespace SMIS.UI.Controllers
             var users = _context.Users.ToList();
             return View(users);
         }
+
+        //[HttpPost]
+        //public IActionResult SaveRoles(Dictionary<int, string> Username, Dictionary<int, int> Role)
+        //{
+
+        //}
     }
 }
