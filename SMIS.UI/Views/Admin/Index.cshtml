@@ -1,27 +1,53 @@
 ﻿@model List<SMIS.Entities.Models.User>
 
-<h1>Admin Panel</h1>
+<h1>Admin Paneli</h1>
 
-<h3>Kullanıcılar</h3>
+<hr />
 
+<h2>Yönetim İşlemleri</h2>
+
+<ul>
+    <li>
+        <a asp-controller="Admin" asp-action="LessonSchedule">
+            Ders Programı Yönetimi
+        </a>
+    </li>
+    <li>
+        <a asp-controller="Admin" asp-action="Announcements">
+            Okul Duyuruları Yönetimi
+        </a>
+    </li>
+    <li>
+        <a asp-controller="Admin" asp-action="AddTeacher">
+            Öğretmen Ekle
+        </a>
+    </li>
+</ul>
+
+<hr />
+
+<h2>Kullanıcı Listesi</h2>
 
 <table border="1" cellpadding="8">
-    <tr>
-        <th>İsim</th>
-        <th>Yetki</th>
-    </tr>
-
-    @foreach (var user in Model)
-    {
-        <tr>
-            <td>@user.Username</td>
-            <td>@user.Role</td>
+    <thead>
+        <tr style="font-weight:bold;">
+            <th>İsim Soyisim</th>
+            <th>Yetki</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.FullName</td>
+                <td>@user.Role</td>
+            </tr>
+        }
+    </tbody>
 </table>
 
+<br />
 
-
-<a href="/Account/Logout" style="color:red;">🚪 Logout</a>
-
-
+<a asp-controller="Account" asp-action="Logout" style="color:red;">
+     Logout
+</a>

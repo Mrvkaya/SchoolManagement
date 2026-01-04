@@ -1,7 +1,11 @@
-﻿<h2> Okul Duyuruları</h2>
+﻿@model List<SMIS.Entities.Models.Announcement>
 
-<ul>
-    <li> 10 Haziran - Final haftası başlıyor</li>
-    <li> 15 Haziran - Mezuniyet töreni</li>
-</ul>
+<h2> Okul Duyuruları</h2>
 
+@foreach (var item in Model)
+{
+    <h4>@item.Title</h4>
+    <p>@item.Content</p>
+    <small>@item.CreatedDate</small>
+    <hr />
+}

@@ -37,12 +37,17 @@ namespace SMIS.UI.Controllers
 
         public IActionResult Schedule()
         {
-            return View();
+            var list = _context.LessonSchedules.ToList();
+            return View(list);
         }
 
         public IActionResult Announcements()
         {
-            return View();
+            var list = _context.Announcements
+        .OrderByDescending(x => x.CreatedDate)
+        .ToList();
+
+            return View(list);
         }
     }
 }

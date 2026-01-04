@@ -1,19 +1,20 @@
-﻿<h2> Ders Programım</h2>
+﻿@model List<SMIS.Entities.Models.LessonSchedule>
 
-<table border="1">
+<h2>Ders Programım</h2>
+
+<table border="1" cellpadding="6">
     <tr>
         <th>Gün</th>
         <th>Ders</th>
         <th>Saat</th>
     </tr>
-    <tr>
-        <td>Pazartesi</td>
-        <td>Matematik</td>
-        <td>09:00 - 10:00</td>
-    </tr>
-    <tr>
-        <td>Salı</td>
-        <td>Fizik</td>
-        <td>11:00 - 12:00</td>
-    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Day</td>
+            <td>@item.LessonName</td>
+            <td>@item.Hour</td>
+        </tr>
+    }
 </table>

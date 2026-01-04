@@ -1,0 +1,21 @@
+﻿@model SMIS.UI.Models.RegisterViewModel
+
+<h2>Kayıt Ol</h2>
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">@ViewBag.Error</p>
+}
+
+<form method="post">
+    <input asp-for="FullName" placeholder="Ad Soyad" /><br />
+    <input asp-for="Password" type="password" placeholder="Şifre" /><br />
+
+    <select asp-for="Role">
+        <option value="Student">Öğrenci</option>
+        <option value="Teacher">Öğretmen</option>
+    </select>
+
+    <br /><br />
+    <button type="submit">Kayıt Ol</button>
+</form>

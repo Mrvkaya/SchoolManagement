@@ -1,0 +1,29 @@
+﻿@using SMIS.Entities.Models
+@model List<LessonSchedule>
+
+<h2>Ders Programı Oluştur</h2>
+
+<form method="post">
+    <input name="LessonName" placeholder="Ders Adı" />
+    <input name="Day" placeholder="Gün" />
+    <input name="Hour" placeholder="Saat" />
+    <button type="submit">Kaydet</button>
+</form>
+
+<hr />
+
+<table>
+    <tr>
+        <th>Ders</th>
+        <th>Gün</th>
+        <th>Saat</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.LessonName</td>
+            <td>@item.Day</td>
+            <td>@item.Hour</td>
+        </tr>
+    }
+</table>
