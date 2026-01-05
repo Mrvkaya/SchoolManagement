@@ -14,9 +14,13 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.AddScoped<IGradeService, GradeService>();
+builder.Services.AddScoped<IAttendanceService, AttendanceService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddDbContext<SchoolManagementDbContext>(options =>
     options.UseSqlServer(
