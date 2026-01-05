@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using SMIS.Entities.Models;
 
+
 namespace SMIS.DAL.Context
 {
     public class SchoolManagementDbContext : DbContext

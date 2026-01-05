@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SMIS.BLL\SMIS.BLL.csproj" />
-    <ProjectReference Include="..\SMIS.DAL\SMIS.DAL.csproj" />
     <ProjectReference Include="..\SMIS.Entities\SMIS.Entities.csproj" />
   </ItemGroup>
 

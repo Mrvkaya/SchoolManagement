@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SMIS.DAL.Context;
+using SMIS.BLL.Interface;
+using SMIS.BLL.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,7 @@ builder.Services.AddSession(options =>
 
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddDbContext<SchoolManagementDbContext>(options =>
     options.UseSqlServer(
