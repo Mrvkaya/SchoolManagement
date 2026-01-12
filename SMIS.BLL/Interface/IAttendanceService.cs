@@ -4,6 +4,7 @@ namespace SMIS.BLL.Interface
 {
     public interface IAttendanceService
     {
-        void SaveAttendance(List<int> presentIds);
+        List<Attendance> GetByStudentId(int studentId);
+        void Add(Attendance attendance);
     }
 }

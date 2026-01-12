@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SMIS.BLL.Interface;
+using SMIS.BLL.Services;
 
 namespace SMIS.UI.Controllers
 {
@@ -7,13 +8,16 @@ namespace SMIS.UI.Controllers
     {
         private readonly IGradeService _gradeService;
         private readonly IAttendanceService _attendanceService;
+        private readonly IUserService _userService;
 
         public TeacherController(
             IGradeService gradeService,
-            IAttendanceService attendanceService)
+            IAttendanceService attendanceService,
+            IUserService userService)
         {
             _gradeService = gradeService;
             _attendanceService = attendanceService;
+            _userService = userService;
         }
 
         [HttpPost]

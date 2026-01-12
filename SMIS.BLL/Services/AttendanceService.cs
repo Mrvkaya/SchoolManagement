@@ -1,6 +1,5 @@
 ﻿using SMIS.BLL.Interface;
 using SMIS.DAL.Context;
-using SMIS.Entities.Enums;
 using SMIS.Entities.Models;
 
 namespace SMIS.BLL.Services
@@ -14,24 +13,16 @@ namespace SMIS.BLL.Services
             _context = context;
         }
 
-        public void SaveAttendance(List<int> presentIds)
+        public List<Attendance> GetByStudentId(int studentId)
         {
-            var students = _context.Users
-                .Where(x => x.Role == UserRole.Student)
-                .ToList();
+            return _context.Attendances
+                           .Where(x => x.StudentId == studentId)
+                           .ToList();
+        }
 
-            foreach (var student in students)
-            {
-                var attendance = new Attendance
-                {
-                    StudentId = student.Id,
-                    Date = DateTime.Today,
-                    IsPresent = presentIds != null && presentIds.Contains(student.Id)
-                };
-
-                _context.Attendances.Add(attendance);
-            }
-
+        public void Add(Attendance attendance)
+        {
+            _context.Attendances.Add(attendance);
             _context.SaveChanges();
         }
     }

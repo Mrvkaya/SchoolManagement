@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using SMIS.DAL.Context;
 using SMIS.BLL.Interface;
 using SMIS.BLL.Services;
+using SMIS.DAL.Repositories.Interfaces;
+using SMIS.DAL.Repositories.Ef;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +19,9 @@ builder.Services.AddSession(options =>
 builder.Services.AddScoped<IGradeService, GradeService>();
 builder.Services.AddScoped<IAttendanceService, AttendanceService>();
 builder.Services.AddScoped<IUserService, UserService>();
-
-
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
 
 builder.Services.AddControllersWithViews();
 

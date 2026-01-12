@@ -7,6 +7,9 @@ namespace SMIS.BLL.Interface
         void SaveGrades(
             Dictionary<int, string> lessonNames,
             Dictionary<int, int> scores);
+
+        List<Grade> GetGradesByStudentId(int studentId);
+        string? GetByStudentId(int studentId);
     }
 }
 

@@ -13,6 +13,20 @@ namespace SMIS.BLL.Services
             _context = context;
         }
 
+        public List<Grade> GetByStudentId(int studentId)
+        {
+            return _context.Grades
+                .Where(x => x.StudentId == studentId)
+                .ToList();
+        }
+
+        public List<Grade> GetGradesByStudentId(int studentId)
+        {
+            return _context.Grades
+                .Where(x => x.StudentId == studentId)
+                .ToList();
+        }
+
         public void SaveGrades(
             Dictionary<int, string> lessonNames,
             Dictionary<int, int> scores)
@@ -30,6 +44,11 @@ namespace SMIS.BLL.Services
             }
 
             _context.SaveChanges();
+        }
+
+        string? IGradeService.GetByStudentId(int studentId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

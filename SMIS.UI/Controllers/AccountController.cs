@@ -13,6 +13,8 @@ namespace SMIS.UI.Controllers
             _userService = userService;
         }
 
+        //  LOGIN 
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -30,6 +32,9 @@ namespace SMIS.UI.Controllers
             HttpContext.Session.SetString("UserId", user.Id.ToString());
             HttpContext.Session.SetString("Role", user.Role.ToString());
 
+            if (user.Role == UserRole.Parent && user.ChildStudentId.HasValue)
+                HttpContext.Session.SetString("ChildStudentId", user.ChildStudentId.Value.ToString());
+
             if (user.Role == UserRole.Admin)
                 return RedirectToAction("Index", "Admin");
 
@@ -39,8 +44,32 @@ namespace SMIS.UI.Controllers
             if (user.Role == UserRole.Teacher)
                 return RedirectToAction("Index", "Teacher");
 
+            if (user.Role == UserRole.Parent)
+                return RedirectToAction("Index", "Parent");
+
             return Content("Rol tanımlı değil");
         }
+
+        // REGISTER 
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(string fullName, string password, UserRole role)
+        {
+            var success = _userService.Register(fullName, password, role);
+
+            if (!success)
+                return Content("Kayıt sırasında hata oluştu");
+
+            return RedirectToAction("Login");
+        }
+
+        //  LOGOUT 
 
         public IActionResult Logout()
         {
