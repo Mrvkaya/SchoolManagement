@@ -24,7 +24,6 @@ namespace SMIS.UI.Controllers
             if (string.IsNullOrEmpty(userIdString))
             {
                 return RedirectToAction("Login", "Account");
-            }
 
             int studentId = int.Parse(userIdString);
 
@@ -34,20 +33,4 @@ namespace SMIS.UI.Controllers
 
             return View(grades);
         }
-
-        public IActionResult Schedule()
-        {
-            var list = _context.LessonSchedules.ToList();
-            return View(list);
-        }
-
-        public IActionResult Announcements()
-        {
-            var list = _context.Announcements
-        .OrderByDescending(x => x.CreatedDate)
-        .ToList();
-
-            return View(list);
-        }
-    }
 }

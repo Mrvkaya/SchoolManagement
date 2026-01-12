@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SMIS.BLL.Interface;
-using SMIS.BLL.Services;
 
 namespace SMIS.UI.Controllers
 {
