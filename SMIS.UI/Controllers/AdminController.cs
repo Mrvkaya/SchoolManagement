@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SMIS.DAL.Context;
+using SMIS.BLL.Interface;
 using SMIS.Entities.Enums;
 using SMIS.Entities.Models;
 
@@ -7,12 +7,31 @@ namespace SMIS.UI.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly SchoolManagementDbContext _context;
+        private readonly IUserService _userService;
+        private readonly IAnnouncementService _announcementService;
+        private readonly ITeacherLessonService _teacherLessonService;
+        private readonly ILessonScheduleService _lessonScheduleService;
 
-        public AdminController(SchoolManagementDbContext context)
+        public AdminController(
+            IUserService userService,
+            IAnnouncementService announcementService,
+            ITeacherLessonService teacherLessonService,
+            ILessonScheduleService lessonScheduleService)
         {
-            _context = context;
+            _userService = userService;
+            _announcementService = announcementService;
+            _teacherLessonService = teacherLessonService;
+            _lessonScheduleService = lessonScheduleService;  
         }
+
+        //  KULLANICI LİSTESİ
+        public IActionResult Index()
+        {
+            var users = _userService.GetAll();
+            return View(users);
+        }
+
+        //  ÖĞRETMEN EKLE
         [HttpGet]
         public IActionResult AddTeacher()
         {
@@ -29,52 +48,38 @@ namespace SMIS.UI.Controllers
                 Role = UserRole.Teacher
             };
 
-            _context.Users.Add(teacher);
-            _context.SaveChanges();
-
+            _userService.Add(teacher);
             return RedirectToAction("Index");
         }
-        public IActionResult Index()
-        {
-            var users = _context.Users.ToList();
-            return View(users);
-        }
-        public IActionResult LessonSchedule()
-        {
-            if (HttpContext.Session.GetString("Role") != "Admin")
-                return RedirectToAction("Login", "Account");
 
-            var list = _context.LessonSchedules.ToList();
-            return View(list);
-        }
-        public IActionResult Announcements()
+        // ÖĞRENCİ GÜNCELLE
+        [HttpGet]
+        public IActionResult EditStudent(int id)
         {
-            var list = _context.Announcements
-                .OrderByDescending(x => x.CreatedDate)
-                .ToList();
-
-            return View(list);
-        }
-        public IActionResult Schedule()
-        {
-            var list = _context.LessonSchedules.ToList();
-            return View(list);
+            var student = _userService.GetById(id);
+            return View(student);
         }
 
         [HttpPost]
-        public IActionResult Schedule(string day, string lesson, string time)
+        public IActionResult EditStudent(User model)
         {
-            var schedule = new LessonSchedule
-            {
-                Day = day,
-                LessonName = lesson,
-                Hour = time
-            };
+            _userService.Update(model);
+            return RedirectToAction("Index");
+        }
 
-            _context.LessonSchedules.Add(schedule);
-            _context.SaveChanges();
+        // ÖĞRENCİ SİL
+        public IActionResult DeleteStudent(int id)
+        {
+            _userService.Delete(id);
+            return RedirectToAction("Index");
+        }
 
-            return RedirectToAction("Schedule");
+        // DUYURULAR
+        [HttpGet]
+        public IActionResult Announcements()
+        {
+            var list = _announcementService.GetAll();
+            return View(list);
         }
 
         [HttpPost]
@@ -87,22 +92,44 @@ namespace SMIS.UI.Controllers
                 CreatedDate = DateTime.Now
             };
 
-            _context.Announcements.Add(announcement);
-            _context.SaveChanges();
-
+            _announcementService.Add(announcement);
             return RedirectToAction("Announcements");
+        }
+
+        //  ÖĞRETMEN ATAMA
+        [HttpGet]
+        public IActionResult TeacherAssignments()
+        {
+            var teachers = _userService.GetAll()
+                .Where(x => x.Role == UserRole.Teacher)
+                .ToList();
+
+            ViewBag.Teachers = teachers;
+
+            var list = _teacherLessonService.GetAll();
+            return View(list);
+        }
+
+        [HttpPost]
+        public IActionResult TeacherAssignments(int teacherId, string className, string lessonName)
+        {
+            _teacherLessonService.Assign(teacherId, lessonName, className);
+            return RedirectToAction(nameof(TeacherAssignments));
+        }
+
+        //  DERS PROGRAMI YÖNETİMİ 
+        [HttpGet]
+        public IActionResult LessonSchedule()
+        {
+            var list = _lessonScheduleService.GetAll();
+            return View(list);
         }
 
         [HttpPost]
         public IActionResult LessonSchedule(LessonSchedule model)
         {
-            if (HttpContext.Session.GetString("Role") != "Admin")
-                return RedirectToAction("Login", "Account");
-
-            _context.LessonSchedules.Add(model);
-            _context.SaveChanges();
-
-            return RedirectToAction("LessonSchedule");
+            _lessonScheduleService.Add(model);
+            return RedirectToAction(nameof(LessonSchedule));
         }
     }
 }

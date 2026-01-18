@@ -1,2 +1,39 @@
-﻿<h2>Duyurular</h2>
-<p> Sınıfa duyuru paylaş.</p>
+﻿@model List<SMIS.Entities.Models.Announcement>
+
+<h2>Duyurular</h2>
+
+<h4>Yeni Duyuru Ekle</h4>
+
+<form method="post">
+    <div>
+        <label>Başlık</label><br />
+        <input type="text" name="title" required />
+    </div>
+
+    <div style="margin-top:10px;">
+        <label>İçerik</label><br />
+        <textarea name="content" rows="4" cols="50" required></textarea>
+    </div>
+
+    <button type="submit" style="margin-top:10px;">Paylaş</button>
+</form>
+
+<hr />
+
+<h4>Paylaşılan Duyurular</h4>
+
+@if (Model != null && Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+            <strong>@item.Title</strong><br />
+            <small>@item.CreatedDate.ToString("dd.MM.yyyy HH:mm")</small>
+            <p>@item.Content</p>
+        </div>
+    }
+}
+else
+{
+    <p>Henüz duyuru yok.</p>
+}

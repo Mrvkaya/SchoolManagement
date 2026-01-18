@@ -55,8 +55,15 @@ namespace SMIS.UI.Controllers
         // Duyurular
         public IActionResult Announcements()
         {
-            var announcements = _announcementService.GetAll();
-            return View(announcements);
+            var childIdString = HttpContext.Session.GetString("ChildStudentId");
+
+            if (string.IsNullOrEmpty(childIdString))
+                return RedirectToAction("Login", "Account");
+
+            int studentId = int.Parse(childIdString);
+
+            var list = _attendanceService.GetByStudentId(studentId);
+            return View(list);
         }
     }
 }

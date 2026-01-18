@@ -1,0 +1,14 @@
+﻿@model SMIS.Entities.Models.Grade
+
+<form asp-action="EditGrade" asp-controller="Teacher" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="StudentId" />
+
+    <label>Ders</label>
+    <input asp-for="LessonName" />
+
+    <label>Not</label>
+    <input asp-for="Score" type="number" />
+
+    <button type="submit">Güncelle</button>
+</form>

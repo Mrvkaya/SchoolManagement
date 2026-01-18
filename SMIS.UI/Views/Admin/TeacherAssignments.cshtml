@@ -1,0 +1,47 @@
+﻿@model List<SMIS.Entities.Models.TeacherLesson>
+
+<h2>Öğretmen Atama</h2>
+
+<form asp-action="TeacherAssignments" method="post">
+    <label>Öğretmen</label>
+    <select name="teacherId">
+        @foreach (var t in (List<SMIS.Entities.Models.User>)ViewBag.Teachers)
+        {
+            <option value="@t.Id">@t.FullName</option>
+        }
+    </select>
+
+    <br />
+
+    <label>Sınıf</label>
+    <input type="text" name="className" />
+
+    <br />
+
+    <label>Ders</label>
+    <input type="text" name="lessonName" />
+
+    <br />
+
+    <button type="submit">Ata</button>
+</form>
+
+<hr />
+
+<h3>Mevcut Atamalar</h3>
+
+<table border="1" cellpadding="6">
+    <tr>
+        <th>TeacherId</th>
+        <th>Sınıf</th>
+        <th>Ders</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.TeacherId</td>
+            <td>@item.ClassName</td>
+            <td>@item.LessonName</td>
+        </tr>
+    }
+</table>

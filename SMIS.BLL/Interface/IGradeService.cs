@@ -1,15 +1,22 @@
 ﻿using SMIS.Entities.Models;
+using System.Collections.Generic;
 
 namespace SMIS.BLL.Interface
 {
     public interface IGradeService
     {
-        void SaveGrades(
-            Dictionary<int, string> lessonNames,
-            Dictionary<int, int> scores);
+        List<Grade> GetAll();
 
-        List<Grade> GetGradesByStudentId(int studentId);
-        string? GetByStudentId(int studentId);
+        List<Grade> GetByStudentId(int studentId);
+
+        Grade GetById(int id);
+        void Add(Grade grade);
+
+        void Update(Grade grade);
+
+        void SaveGrades(
+            Dictionary<int, string> lessonName,
+            Dictionary<int, int> score
+        );
     }
 }
-

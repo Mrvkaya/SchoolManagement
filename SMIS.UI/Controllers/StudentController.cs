@@ -1,15 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SMIS.DAL.Context;
+using SMIS.BLL.Interface;
 
 namespace SMIS.UI.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly SchoolManagementDbContext _context;
+        private readonly IGradeService _gradeService;
+        private readonly ILessonScheduleService _lessonScheduleService;
+        private readonly IAnnouncementService _announcementService;
 
-        public StudentController(SchoolManagementDbContext context)
+        public StudentController(
+            IGradeService gradeService,
+            ILessonScheduleService lessonScheduleService,
+            IAnnouncementService announcementService)
         {
-            _context = context;
+            _gradeService = gradeService;
+            _lessonScheduleService = lessonScheduleService;
+            _announcementService = announcementService;
         }
 
         public IActionResult Index()
@@ -28,24 +35,21 @@ namespace SMIS.UI.Controllers
 
             int studentId = int.Parse(userIdString);
 
-            var grades = _context.Grades
-                .Where(x => x.StudentId == studentId)
-                .ToList();
-
+            var grades = _gradeService.GetByStudentId(studentId);
             return View(grades);
         }
 
         public IActionResult Schedule()
         {
-            var list = _context.LessonSchedules.ToList();
+            var list = _lessonScheduleService.GetAll();
             return View(list);
         }
 
         public IActionResult Announcements()
         {
-            var list = _context.Announcements
-        .OrderByDescending(x => x.CreatedDate)
-        .ToList();
+            var list = _announcementService.GetAll()
+                .OrderByDescending(x => x.CreatedDate)
+                .ToList();
 
             return View(list);
         }

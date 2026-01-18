@@ -15,7 +15,15 @@ namespace SMIS.BLL.Services
 
         public List<Announcement> GetAll()
         {
-            return _context.Announcements.ToList();
+            return _context.Announcements
+            .OrderByDescending(x => x.CreatedDate)
+                       .ToList();
+        }
+
+        public void Add(Announcement announcement)
+        {
+            _context.Announcements.Add(announcement);
+            _context.SaveChanges();
         }
     }
 }

@@ -1,36 +1,48 @@
-﻿@model List<SMIS.Entities.Models.User>
+﻿@model List<SMIS.Entities.Models.Grade>
 
-<h2>Not Girişi</h2>
+<h2>Yeni Not Ekle</h2>
 
-<form asp-action="SaveGrades" method="post">
-    <table border="1" cellpadding="8">
-        <tr>
-            <th>Öğrenci</th>
-            <th>Ders</th>
-            <th>Not</th>
-        </tr>
+<form asp-action="AddGrade" method="post">
+    <div>
+        <label>Öğrenci Id</label><br />
+        <input type="number" name="studentId" required />
+    </div>
 
-        @foreach (var student in Model)
-        {
-            <tr>
-                <td>@student.FullName</td>
-                <td>
-                    <input type="text"
-                           name="LessonName[@student.Id]"
-                           placeholder="Ders adı"
-                           required />
-                </td>
-                <td>
-                    <input type="number"
-                           name="Score[@student.Id]"
-                           min="0"
-                           max="100"
-                           required />
-                </td>
-            </tr>
-        }
-    </table>
+    <div>
+        <label>Ders Adı</label><br />
+        <input type="text" name="lessonName" required />
+    </div>
+
+    <div>
+        <label>Not</label><br />
+        <input type="number" name="score" required />
+    </div>
 
     <br />
-    <button type="submit">Notları Kaydet</button>
+    <button type="submit">Kaydet</button>
 </form>
+
+<hr />
+
+<h2>Not Listesi</h2>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Öğrenci Id</th>
+        <th>Ders</th>
+        <th>Not</th>
+        <th>İşlem</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.StudentId</td>
+            <td>@item.LessonName</td>
+            <td>@item.Score</td>
+            <td>
+                <a asp-action="EditGrade" asp-route-id="@item.Id">Düzenle</a>
+            </td>
+        </tr>
+    }
+</table>

@@ -19,12 +19,24 @@ namespace SMIS.BLL.Services
                 .Where(x => x.StudentId == studentId)
                 .ToList();
         }
-
-        public List<Grade> GetGradesByStudentId(int studentId)
+        public Grade GetById(int id)
         {
-            return _context.Grades
-                .Where(x => x.StudentId == studentId)
-                .ToList();
+            return _context.Grades.FirstOrDefault(x => x.Id == id);
+        }
+        public List<Grade> GetAll()
+        {
+            return _context.Grades.ToList();
+        }
+
+        public void Update(Grade grade)
+        {
+            var entity = _context.Grades.FirstOrDefault(x => x.Id == grade.Id);
+            if (entity == null) return;
+
+            entity.LessonName = grade.LessonName;
+            entity.Score = grade.Score;
+
+            _context.SaveChanges();
         }
 
         public void SaveGrades(
@@ -45,10 +57,10 @@ namespace SMIS.BLL.Services
 
             _context.SaveChanges();
         }
-
-        string? IGradeService.GetByStudentId(int studentId)
+        public void Add(Grade grade)
         {
-            throw new NotImplementedException();
+            _context.Grades.Add(grade);
+            _context.SaveChanges();
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿@model List<SMIS.Entities.Models.User>
 
 <h1>Admin Paneli</h1>
-
 <hr />
 
 <h2>Yönetim İşlemleri</h2>
@@ -12,14 +11,22 @@
             Ders Programı Yönetimi
         </a>
     </li>
+
     <li>
         <a asp-controller="Admin" asp-action="Announcements">
             Okul Duyuruları Yönetimi
         </a>
     </li>
+
     <li>
         <a asp-controller="Admin" asp-action="AddTeacher">
             Öğretmen Ekle
+        </a>
+    </li>
+
+    <li>
+        <a asp-controller="Admin" asp-action="TeacherAssignments">
+            Öğretmen Atama
         </a>
     </li>
 </ul>
@@ -33,14 +40,24 @@
         <tr style="font-weight:bold;">
             <th>İsim Soyisim</th>
             <th>Yetki</th>
+            <th>İşlemler</th>
         </tr>
     </thead>
+
     <tbody>
         @foreach (var user in Model)
         {
             <tr>
                 <td>@user.FullName</td>
                 <td>@user.Role</td>
+                <td>
+                    <a asp-action="EditStudent" asp-route-id="@user.Id"> Düzenle</a>
+                    |
+                    <a asp-action="DeleteStudent" asp-route-id="@user.Id"
+                       onclick="return confirm('Silmek istediğine emin misin?')">
+                         Sil
+                    </a>
+                </td>
             </tr>
         }
     </tbody>
@@ -49,5 +66,5 @@
 <br />
 
 <a asp-controller="Account" asp-action="Logout" style="color:red;">
-     Logout
+    Logout
 </a>
