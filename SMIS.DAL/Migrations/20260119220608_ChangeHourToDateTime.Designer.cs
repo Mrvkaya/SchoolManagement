@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SMIS.DAL.Context;
 
@@ -11,9 +12,11 @@ using SMIS.DAL.Context;
 namespace SMIS.DAL.Migrations
 {
     [DbContext(typeof(SchoolManagementDbContext))]
-    partial class SchoolManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260119220608_ChangeHourToDateTime")]
+    partial class ChangeHourToDateTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,8 +108,8 @@ namespace SMIS.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeOnly>("Hour")
-                        .HasColumnType("time");
+                    b.Property<DateTime>("Hour")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("LessonName")
                         .IsRequired()

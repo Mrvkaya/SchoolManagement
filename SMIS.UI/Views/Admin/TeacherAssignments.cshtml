@@ -1,47 +1,64 @@
-﻿@model List<SMIS.Entities.Models.TeacherLesson>
+﻿@model SMIS.UI.Models.TeacherAssignmentViewModel
 
-<h2>Öğretmen Atama</h2>
+<div class="admin-wrapper">
 
-<form asp-action="TeacherAssignments" method="post">
-    <label>Öğretmen</label>
-    <select name="teacherId">
-        @foreach (var t in (List<SMIS.Entities.Models.User>)ViewBag.Teachers)
-        {
-            <option value="@t.Id">@t.FullName</option>
-        }
-    </select>
+    <!-- ATAMA FORMU -->
+    <div class="admin-card">
+        <div class="admin-title">Öğretmen Atama</div>
 
-    <br />
+        <form asp-action="TeacherAssignments" method="post" class="assignment-form">
 
-    <label>Sınıf</label>
-    <input type="text" name="className" />
+            <select name="TeacherId" required>
+                <option value="">Öğretmen Seç</option>
+                @foreach (var teacher in Model.Teachers)
+                {
+                    <option value="@teacher.Id">
+                        @teacher.FullName
+                    </option>
+                }
+            </select>
 
-    <br />
+            <input type="text"
+                   name="ClassName"
+                   placeholder="Sınıf"
+                   required />
 
-    <label>Ders</label>
-    <input type="text" name="lessonName" />
+            <input type="text"
+                   name="LessonName"
+                   placeholder="Ders"
+                   required />
 
-    <br />
+            <button type="submit" class="primary-btn">
+                Ata
+            </button>
+        </form>
+    </div>
 
-    <button type="submit">Ata</button>
-</form>
+    <!-- MEVCUT ATAMALAR -->
+    <div class="admin-card">
+        <div class="section-title">Mevcut Atamalar</div>
 
-<hr />
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Öğretmen</th>
+                        <th>Sınıf</th>
+                        <th>Ders</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Assignments)
+                    {
+                        <tr>
+                            <td>@item.TeacherId</td>
+                            <td>@item.ClassName</td>
+                            <td>@item.LessonName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-<h3>Mevcut Atamalar</h3>
-
-<table border="1" cellpadding="6">
-    <tr>
-        <th>TeacherId</th>
-        <th>Sınıf</th>
-        <th>Ders</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.TeacherId</td>
-            <td>@item.ClassName</td>
-            <td>@item.LessonName</td>
-        </tr>
-    }
-</table>
+</div>

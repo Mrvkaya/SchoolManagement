@@ -1,9 +1,26 @@
-﻿<h2> Öğretmen Ekle</h2>
+﻿@model SMIS.Entities.Models.User
 
-<form method="post">
-    <input type="text" name="fullName" placeholder="Ad Soyad" required />
-    <br /><br />
-    <input type="password" name="password" placeholder="Şifre" required />
-    <br /><br />
-    <button type="submit"> Öğretmen Ekle</button>
-</form>
+<div class="admin-wrapper">
+
+    <div class="admin-card">
+        <div class="admin-title">Öğretmen Ekle</div>
+
+        <form asp-action="AddTeacher" method="post" class="teacher-form">
+
+            <input type="text"
+                   name="FullName"
+                   placeholder="Ad Soyad"
+                   required />
+
+            <input type="password"
+                   name="Password"
+                   placeholder="Şifre"
+                   required />
+
+            <button type="submit" class="primary-btn">
+                Öğretmen Ekle
+            </button>
+        </form>
+    </div>
+
+</div>

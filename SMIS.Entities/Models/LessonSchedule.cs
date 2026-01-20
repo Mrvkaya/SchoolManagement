@@ -9,6 +9,6 @@ namespace SMIS.Entities.Models
         public int Id { get; set; }
         public string LessonName { get; set; }
         public string Day { get; set; }
-        public string Hour { get; set; }
+        public TimeOnly Hour { get; set; }
     }
 }

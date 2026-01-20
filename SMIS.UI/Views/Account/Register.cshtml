@@ -1,22 +1,36 @@
 ﻿@model SMIS.UI.Models.RegisterViewModel
-
-<h2>Kayıt Ol</h2>
+@{
+	ViewData["Title"] = "Register";
+	Layout = null;
+}
+<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
 
 @if (ViewBag.Error != null)
 {
-    <p style="color:red">@ViewBag.Error</p>
+	<p style="color:red">@ViewBag.Error</p>
 }
 
-<form method="post">
-    <input asp-for="FullName" placeholder="Ad Soyad" /><br />
-    <input asp-for="Password" type="password" placeholder="Şifre" /><br />
+<form asp-action="Register" method="post" class="login-card">
 
-    <select asp-for="Role">
-        <option value="Student">Öğrenci</option>
-        <option value="Teacher">Öğretmen</option>
-		<option value="Parent">Veli</option>
-    </select>
+	<h2>Kayıt Ol </h2>
 
-    <br /><br />
-    <button type="submit">Kayıt Ol</button>
+	<input type="text" name="FullName" placeholder="Ad Soyad" required />
+	<input type="password" name="Password" placeholder="Şifre" required />
+
+	<select name="Role">
+		<option>Öğrenci</option>
+		<option>Öğretmen</option>
+		<option>Veli</option>
+	</select>
+
+	<button type="submit">Kayıt Ol</button>
+
+	<div class="register-area">
+		<span>Zaten hesabın var mı?</span>
+		<a asp-action="Login">Giriş Yap</a>
+	</div>
+
 </form>
+
+</div>
+

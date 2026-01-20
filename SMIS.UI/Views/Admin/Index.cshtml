@@ -1,70 +1,85 @@
 ﻿@model List<SMIS.Entities.Models.User>
 
-<h1>Admin Paneli</h1>
-<hr />
+<div class="admin-wrapper">
 
-<h2>Yönetim İşlemleri</h2>
+    <!-- ÜST PANEL -->
+    <div class="admin-card">
+        <div class="admin-title">Admin Paneli</div>
 
-<ul>
-    <li>
-        <a asp-controller="Admin" asp-action="LessonSchedule">
-            Ders Programı Yönetimi
+        <div class="section-title">Yönetim İşlemleri</div>
+
+        <div class="admin-links">
+
+            <a asp-controller="Admin" asp-action="LessonSchedule">
+                Ders Programı Yönetimi
+            </a>
+
+            <a asp-controller="Admin" asp-action="Announcements">
+                Okul Duyuruları Yönetimi
+            </a>
+
+            <a asp-controller="Admin" asp-action="AddTeacher">
+                Öğretmen Ekle
+            </a>
+
+            <a asp-controller="Admin" asp-action="TeacherAssignments">
+                Öğretmen Atama
+            </a>
+
+        </div>
+    </div>
+
+    <!-- KULLANICI LİSTESİ -->
+    <div class="admin-card">
+        <div class="section-title">Kullanıcı Listesi</div>
+
+        <!-- Arama Alanı -->
+        <div class="table-controls">
+            <input type="text" id="userSearch" placeholder="Kullanıcı ara..." />
+
+        </div>
+
+        <div class="table-wrapper">
+            <table class="admin-table" id="userTable">
+                <thead>
+                    <tr>
+                        <th>İsim Soyisim</th>
+                        <th>Yetki</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.FullName</td>
+                            <td>@user.Role</td>
+                            <td>
+                                <a class="action-link edit"
+                                   asp-action="EditStudent"
+                                   asp-route-id="@user.Id">
+                                    Düzenle
+                                </a>
+
+                                <a class="action-link delete"
+                                   asp-action="DeleteStudent"
+                                   asp-route-id="@user.Id"
+                                   onclick="return confirm('Silmek istediğine emin misin?')">
+                                    Sil
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <a class="logout"
+           asp-controller="Account"
+           asp-action="Logout">
+            Logout
         </a>
-    </li>
+    </div>
 
-    <li>
-        <a asp-controller="Admin" asp-action="Announcements">
-            Okul Duyuruları Yönetimi
-        </a>
-    </li>
-
-    <li>
-        <a asp-controller="Admin" asp-action="AddTeacher">
-            Öğretmen Ekle
-        </a>
-    </li>
-
-    <li>
-        <a asp-controller="Admin" asp-action="TeacherAssignments">
-            Öğretmen Atama
-        </a>
-    </li>
-</ul>
-
-<hr />
-
-<h2>Kullanıcı Listesi</h2>
-
-<table border="1" cellpadding="8">
-    <thead>
-        <tr style="font-weight:bold;">
-            <th>İsim Soyisim</th>
-            <th>Yetki</th>
-            <th>İşlemler</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var user in Model)
-        {
-            <tr>
-                <td>@user.FullName</td>
-                <td>@user.Role</td>
-                <td>
-                    <a asp-action="EditStudent" asp-route-id="@user.Id"> Düzenle</a>
-                    |
-                    <a asp-action="DeleteStudent" asp-route-id="@user.Id"
-                       onclick="return confirm('Silmek istediğine emin misin?')">
-                         Sil
-                    </a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<br />
-
-<a asp-controller="Account" asp-action="Logout" style="color:red;">
-    Logout
-</a>
+</div>

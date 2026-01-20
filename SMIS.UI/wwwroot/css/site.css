@@ -29,3 +29,300 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/*  ADMIN PANEL TASARIM */
+
+body {
+    background: linear-gradient(135deg, #ff9acb, #ff6fae);
+    min-height: 100vh;
+}
+
+/* Sayfa kapsayýcý */
+.admin-wrapper {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* Kart yapýsý */
+.admin-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 25px 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Baþlýklar */
+.admin-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #ff2f92;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+/* Yönetim linkleri */
+.admin-links a {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #ff5fa2, #ff2f92);
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+    .admin-links a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+/* Tablo */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+    .admin-table th {
+        background: #ff2f92;
+        color: white;
+        padding: 12px;
+        text-align: left;
+    }
+
+    .admin-table td {
+        padding: 12px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .admin-table tr:nth-child(even) {
+        background: #fff5f9;
+    }
+
+    .admin-table tr:hover {
+        background: #ffe0ec;
+    }
+
+/* Ýþlem linkleri */
+.action-link {
+    color: #ff2f92;
+    font-weight: 600;
+    margin-right: 8px;
+    text-decoration: none;
+}
+
+    .action-link:hover {
+        text-decoration: underline;
+    }
+
+/* Logout */
+.logout {
+    display: inline-block;
+    margin-top: 15px;
+    color: #ff2f92;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+    .logout:hover {
+        text-decoration: underline;
+    }
+
+
+
+/*  DERS PROGRAMI FORM */
+
+.schedule-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+    .schedule-form input {
+        flex: 1;
+        min-width: 180px;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ffb3d1;
+        outline: none;
+    }
+
+        .schedule-form input:focus {
+            border-color: #ff2f92;
+            box-shadow: 0 0 6px rgba(255,47,146,0.4);
+        }
+
+.primary-btn {
+    background: linear-gradient(135deg, #ff5fa2, #ff2f92);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+    .primary-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    }
+
+
+
+/* DUYURU YÖNETÝMÝ */
+
+.announcement-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+    .announcement-form input,
+    .announcement-form textarea {
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ffb3d1;
+        outline: none;
+        resize: none;
+    }
+
+        .announcement-form input:focus,
+        .announcement-form textarea:focus {
+            border-color: #ff2f92;
+            box-shadow: 0 0 6px rgba(255,47,146,0.4);
+        }
+
+.announcement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.announcement-item {
+    background: #fff5f9;
+    border-left: 6px solid #ff2f92;
+    padding: 15px 18px;
+    border-radius: 10px;
+}
+
+    .announcement-item h3 {
+        margin: 0 0 6px;
+        color: #ff2f92;
+    }
+
+    .announcement-item p {
+        margin: 0 0 8px;
+        color: #444;
+    }
+
+.announcement-date {
+    font-size: 12px;
+    color: #888;
+}
+
+
+
+/* ÖÐRETMEN FORM*/
+
+.teacher-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 400px;
+}
+
+
+/* ÖÐRETMEN ATAMA */
+
+.assignment-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+    .assignment-form select,
+    .assignment-form input {
+        flex: 1;
+        min-width: 180px;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ffb3d1;
+        outline: none;
+    }
+
+        .assignment-form select:focus,
+        .assignment-form input:focus {
+            border-color: #ff2f92;
+            box-shadow: 0 0 6px rgba(255,47,146,0.4);
+        }
+
+
+
+/* KULLANICI DÜZENLE */
+
+.edit-user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 420px;
+}
+
+    .edit-user-form label {
+        font-weight: 600;
+        color: #444;
+    }
+
+    .edit-user-form select {
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ffb3d1;
+        outline: none;
+    }
+
+        .edit-user-form select:focus {
+            border-color: #ff2f92;
+            box-shadow: 0 0 6px rgba(255,47,146,0.4);
+        }
+
+.back-link {
+    margin-top: 10px;
+    color: #ff2f92;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+
+#userSearch {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #ffb3d1;
+    outline: none;
+    width: 240px;
+    margin-bottom: 12px;
+}
+
+    #userSearch:focus {
+        border-color: #ff2f92;
+        box-shadow: 0 0 6px rgba(255,47,146,0.4);
+    }
+
+

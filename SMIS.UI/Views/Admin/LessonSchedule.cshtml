@@ -1,30 +1,58 @@
-﻿@using SMIS.Entities.Models
-@model List<SMIS.Entities.Models.LessonSchedule>
+﻿@model IEnumerable<SMIS.Entities.Models.LessonSchedule>
 
+<div class="admin-wrapper">
 
-<h2>Ders Programı Oluştur</h2>
+    <!-- FORM KARTI -->
+    <div class="admin-card">
+        <div class="admin-title">Ders Programı Oluştur</div>
 
-<form method="post">
-    <input name="LessonName" placeholder="Ders Adı" />
-    <input name="Day" placeholder="Gün" />
-    <input name="Hour" placeholder="Saat" />
-    <button type="submit">Kaydet</button>
-</form>
+        <form asp-action="LessonSchedule" method="post" class="schedule-form">
 
-<hr />
+            <input type="text"
+                   name="LessonName"
+                   placeholder="Ders Adı"
+                   required />
 
-<table>
-    <tr>
-        <th>Ders</th>
-        <th>Gün</th>
-        <th>Saat</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.LessonName</td>
-            <td>@item.Day</td>
-            <td>@item.Hour</td>
-        </tr>
-    }
-</table>
+            <input type="text"
+                   name="Day"
+                   placeholder="Gün"
+                   required />
+
+            <input type="time"
+                   name="Time"
+                   required />
+
+            <button type="submit" class="primary-btn">
+                Kaydet
+            </button>
+        </form>
+    </div>
+
+    <!-- TABLO KARTI -->
+    <div class="admin-card">
+        <div class="section-title">Mevcut Ders Programı</div>
+
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Ders</th>
+                        <th>Gün</th>
+                        <th>Saat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.LessonName</td>
+                            <td>@item.Day</td>
+                            <td>@item.Hour</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

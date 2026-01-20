@@ -1,22 +1,45 @@
-﻿@model List<SMIS.Entities.Models.Announcement>
+﻿@model IEnumerable<SMIS.Entities.Models.Announcement>
 
-<h2>Duyuru Yönetimi</h2>
+<div class="admin-wrapper">
 
-<form method="post">
-    <input type="text" name="title" placeholder="Başlık" required />
-    <br /><br />
-    <textarea name="content" placeholder="Duyuru İçeriği" required></textarea>
-    <br /><br />
-    <button type="submit"> Duyuru Ekle</button>
-</form>
+    <!-- DUYURU EKLE -->
+    <div class="admin-card">
+        <div class="admin-title">Duyuru Yönetimi</div>
 
-<hr />
+        <form asp-action="Announcements" method="post" class="announcement-form">
 
-@foreach (var item in Model)
-{
-    <h4>@item.Title</h4>
-    <p>@item.Content</p>
-    <small>@item.CreatedDate</small>
-    <hr />
-}
+            <input type="text"
+                   name="Title"
+                   placeholder="Başlık"
+                   required />
 
+            <textarea name="Content"
+                      rows="4"
+                      placeholder="Duyuru içeriği..."
+                      required></textarea>
+
+            <button type="submit" class="primary-btn">
+                Duyuru Ekle
+            </button>
+        </form>
+    </div>
+
+    <!-- DUYURU LİSTESİ -->
+    <div class="admin-card">
+        <div class="section-title">Yayınlanan Duyurular</div>
+
+        <div class="announcement-list">
+            @foreach (var item in Model.OrderByDescending(x => x.CreatedDate))
+            {
+                <div class="announcement-item">
+                    <h3>@item.Title</h3>
+                    <p>@item.Content</p>
+                    <span class="announcement-date">
+                        @item.CreatedDate.ToString("dd MMMM yyyy HH:mm")
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>

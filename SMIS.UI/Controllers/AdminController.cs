@@ -2,6 +2,8 @@
 using SMIS.BLL.Interface;
 using SMIS.Entities.Enums;
 using SMIS.Entities.Models;
+using SMIS.UI.Models;
+
 
 namespace SMIS.UI.Controllers
 {
@@ -61,14 +63,14 @@ namespace SMIS.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditStudent(User model)
+        public IActionResult Edit(User model)
         {
             _userService.Update(model);
             return RedirectToAction("Index");
         }
 
         // ÖĞRENCİ SİL
-        public IActionResult DeleteStudent(int id)
+        public IActionResult Delete(int id)
         {
             _userService.Delete(id);
             return RedirectToAction("Index");
@@ -100,15 +102,18 @@ namespace SMIS.UI.Controllers
         [HttpGet]
         public IActionResult TeacherAssignments()
         {
-            var teachers = _userService.GetAll()
-                .Where(x => x.Role == UserRole.Teacher)
-                .ToList();
+            var model = new TeacherAssignmentViewModel
+            {
+                Teachers = _userService.GetAll()
+                                       .Where(x => x.Role == UserRole.Teacher)
+                                       .ToList(),
 
-            ViewBag.Teachers = teachers;
+                Assignments = _teacherLessonService.GetAll()
+            };
 
-            var list = _teacherLessonService.GetAll();
-            return View(list);
+            return View(model);
         }
+
 
         [HttpPost]
         public IActionResult TeacherAssignments(int teacherId, string className, string lessonName)

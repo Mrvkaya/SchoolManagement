@@ -1,40 +1,37 @@
 ﻿@model SMIS.Entities.Models.User
 
-<h2>Kullanıcı Düzenle</h2>
+<div class="admin-wrapper">
 
-<form asp-action="EditStudent" method="post">
+    <div class="admin-card">
+        <div class="admin-title">Kullanıcı Düzenle</div>
 
-    <input type="hidden" asp-for="Id" />
+        <form asp-action="EditStudent" method="post" class="edit-user-form">
 
-    <div>
-        <label>Ad Soyad</label><br />
-        <input asp-for="FullName" />
+            <input type="hidden" asp-for="Id" />
+
+            <label>Ad Soyad</label>
+            <input asp-for="FullName" />
+
+            <label>Şifre</label>
+            <input asp-for="Password" type="password" />
+
+            <label>Rol</label>
+            <select asp-for="Role">
+                <option value="Admin">Admin</option>
+                <option value="Student">Student</option>
+                <option value="Teacher">Teacher</option>
+                <option value="Parent">Parent</option>
+            </select>
+
+            <button type="submit" class="primary-btn">
+                Kaydet
+            </button>
+
+            <a asp-action="Index" class="back-link">
+                ← Geri Dön
+            </a>
+
+        </form>
     </div>
 
-    <br />
-
-    <div>
-        <label>Şifre</label><br />
-        <input asp-for="Password" />
-    </div>
-
-    <br />
-
-    <div>
-        <label>Rol</label><br />
-        <select asp-for="Role">
-            <option value="Admin">Admin</option>
-            <option value="Student">Student</option>
-            <option value="Teacher">Teacher</option>
-            <option value="Parent">Parent</option>
-        </select>
-    </div>
-
-    <br />
-
-    <button type="submit">Kaydet</button>
-
-</form>
-
-<br />
-<a asp-action="Index">← Geri Dön</a>
+</div>
