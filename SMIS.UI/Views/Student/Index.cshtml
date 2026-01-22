@@ -1,14 +1,25 @@
-﻿<h1> Öğrenci Paneli</h1>
+﻿<h1 class="page-title">Öğrenci Paneli</h1>
 
-<ul>
-    <li>
-        <a href="/Student/Schedule"> Ders Programım</a>
-    </li>
-    <li>
-        <a href="/Student/Grades"> Notlarım</a>
-    </li>
-    <li>
-        <a href="/Student/Announcements"> Okul Duyuruları</a>
-    </li>
-</ul>
+<div class="admin-wrapper">
 
+    <div class="admin-card">
+        <div class="admin-title">Öğrenci İşlemleri</div>
+
+        <div class="admin-links">
+
+            <a asp-controller="Student" asp-action="Schedule">
+                 Ders Programım
+            </a>
+
+            <a asp-controller="Student" asp-action="Grades">
+                 Notlarım
+            </a>
+
+            <a asp-controller="Student" asp-action="Announcements">
+                 Okul Duyuruları
+            </a>
+
+        </div>
+    </div>
+
+</div>

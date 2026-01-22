@@ -1,11 +1,19 @@
-﻿@model List<SMIS.Entities.Models.Announcement>
+﻿<h1 class="page-title">Okul Duyuruları</h1>
 
-<h2> Okul Duyuruları</h2>
+<div class="admin-wrapper">
 
-@foreach (var item in Model)
-{
-    <h4>@item.Title</h4>
-    <p>@item.Content</p>
-    <small>@item.CreatedDate</small>
-    <hr />
-}
+    <div class="admin-card">
+
+        @foreach (var item in Model)
+        {
+            <div class="announcement-card">
+                <h3>@item.Title</h3>
+                <p>@item.Content</p>
+                <span>@item.CreatedDate.ToString("dd.MM.yyyy HH:mm")</span>
+            </div>
+        }
+
+        <a asp-action="Index" class="back-link"> Panele Dön</a>
+    </div>
+
+</div>

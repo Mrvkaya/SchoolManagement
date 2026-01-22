@@ -1,24 +1,21 @@
-﻿@model List<SMIS.Entities.Models.User>
+﻿<div class="panel-container">
 
-<h2>Yoklama</h2>
+    <div class="panel-card">
+        <div class="section-title"> Yoklama</div>
 
-<form method="post">
-    <table>
-        <tr>
-            <th>Öğrenci</th>
-            <th>Durum</th>
-        </tr>
+        <form method="post">
+            @foreach (var student in Model)
+            {
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="presentIds" value="@student.Id" />
+                        @student.FullName
+                    </label>
+                </div>
+            }
 
-        @foreach (var student in Model)
-        {
-            <tr>
-                <td>@student.FullName</td>
-                <td>
-                    <input type="checkbox" name="presentIds" value="@student.Id" />
-                </td>
-            </tr>
-        }
-    </table>
-
-    <button type="submit">Kaydet</button>
-</form>
+            <button type="submit" class="primary-btn">Kaydet</button>
+        </form>
+    </div>
+    <a asp-action="Index" class="back-link">Panele Dön</a>
+</div>

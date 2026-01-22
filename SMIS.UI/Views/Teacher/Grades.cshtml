@@ -1,48 +1,47 @@
-﻿@model List<SMIS.Entities.Models.Grade>
+﻿<div class="panel-container">
 
-<h2>Yeni Not Ekle</h2>
+    <div class="panel-card">
+        <div class="section-title"> Yeni Not Ekle</div>
 
-<form asp-action="AddGrade" method="post">
-    <div>
-        <label>Öğrenci Id</label><br />
-        <input type="number" name="studentId" required />
+        <form method="post">
+            <div class="form-group">
+                <input name="StudentId" class="form-control" placeholder="Öğrenci Id" />
+            </div>
+
+            <div class="form-group">
+                <input name="LessonName" class="form-control" placeholder="Ders Adı" />
+            </div>
+
+            <div class="form-group">
+                <input name="Score" class="form-control" placeholder="Not" />
+            </div>
+
+            <button class="primary-btn">Kaydet</button>
+        </form>
     </div>
 
-    <div>
-        <label>Ders Adı</label><br />
-        <input type="text" name="lessonName" required />
+    <div class="panel-card">
+        <div class="section-title"> Not Listesi</div>
+
+        <table class="panel-table">
+            <thead>
+                <tr>
+                    <th>Öğrenci</th>
+                    <th>Ders</th>
+                    <th>Not</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.StudentId</td>
+                        <td>@item.LessonName</td>
+                        <td>@item.Score</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
-
-    <div>
-        <label>Not</label><br />
-        <input type="number" name="score" required />
-    </div>
-
-    <br />
-    <button type="submit">Kaydet</button>
-</form>
-
-<hr />
-
-<h2>Not Listesi</h2>
-
-<table border="1" cellpadding="8">
-    <tr>
-        <th>Öğrenci Id</th>
-        <th>Ders</th>
-        <th>Not</th>
-        <th>İşlem</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.StudentId</td>
-            <td>@item.LessonName</td>
-            <td>@item.Score</td>
-            <td>
-                <a asp-action="EditGrade" asp-route-id="@item.Id">Düzenle</a>
-            </td>
-        </tr>
-    }
-</table>
+    <a asp-action="Index" class="back-link">Panele Dön</a>
+</div>

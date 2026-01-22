@@ -1,23 +1,24 @@
-﻿<h2>Öğretmen Paneli</h2>
+﻿<h1 class="page-title">Öğretmen Paneli</h1>
 
-<ul>
-    <li>
-        <a asp-controller="Teacher" asp-action="Attendance">
-            Yoklama
-        </a>
-    </li>
+<div class="admin-wrapper">
 
-    <li>
-        <a asp-controller="Teacher" asp-action="Grades">
-            Not Girişi
-        </a>
-    </li>
+    <div class="admin-card">
+        <div class="admin-title">Öğretmen İşlemleri</div>
 
-    <li>
-        <a asp-controller="Teacher" asp-action="Announcements">
-            Duyurular
-        </a>
-    </li>
-</ul>
+        <div class="admin-links">
 
+            <a asp-controller="Teacher" asp-action="Attendance">
+                 Yoklama
+            </a>
 
+            <a asp-controller="Teacher" asp-action="Grades">
+                 Not Girişi
+            </a>
+
+            <a asp-controller="Teacher" asp-action="Announcements">
+                 Duyurular
+            </a>
+
+        </div>
+    </div>
+</div>

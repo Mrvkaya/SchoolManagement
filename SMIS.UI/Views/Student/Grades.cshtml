@@ -1,18 +1,31 @@
-﻿@model List<SMIS.Entities.Models.Grade>
+﻿<h1 class="page-title">Notlarım</h1>
 
-<h2>Notlarım</h2>
+<div class="admin-wrapper">
 
-<table border="1" cellpadding="8">
-    <tr>
-        <th>Ders</th>
-        <th>Not</th>
-    </tr>
+    <div class="admin-card">
+        <div class="section-title">Ders Başarılarım</div>
 
-    @foreach (var grade in Model)
-    {
-        <tr>
-            <td>@grade.LessonName</td>
-            <td>@grade.Score</td>
-        </tr>
-    }
-</table>
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Ders</th>
+                        <th>Not</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var grade in Model)
+                    {
+                        <tr>
+                            <td>@grade.LessonName</td>
+                            <td>@grade.Score</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <a asp-action="Index" class="back-link"> Panele Dön</a>
+    </div>
+
+</div>

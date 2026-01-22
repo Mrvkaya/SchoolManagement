@@ -1,20 +1,33 @@
-﻿@model List<SMIS.Entities.Models.LessonSchedule>
+﻿<h1 class="page-title">Ders Programım</h1>
 
-<h2>Ders Programım</h2>
+<div class="admin-wrapper">
 
-<table border="1" cellpadding="6">
-    <tr>
-        <th>Gün</th>
-        <th>Ders</th>
-        <th>Saat</th>
-    </tr>
+    <div class="admin-card">
+        <div class="section-title">Haftalık Program</div>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Day</td>
-            <td>@item.LessonName</td>
-            <td>@item.Hour</td>
-        </tr>
-    }
-</table>
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Gün</th>
+                        <th>Ders</th>
+                        <th>Saat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Day</td>
+                            <td>@item.LessonName</td>
+                            <td>@item.Hour</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <a asp-action="Index" class="back-link">Panele Dön</a>
+    </div>
+
+</div>

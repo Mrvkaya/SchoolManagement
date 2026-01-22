@@ -326,3 +326,95 @@ body {
     }
 
 
+/* STUDENT ANNOUNCEMENTS */
+
+.announcement-card {
+    background: #fff5fa;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    border-left: 5px solid #ff2f92;
+}
+
+    .announcement-card h3 {
+        margin: 0;
+        color: #ff2f92;
+    }
+
+    .announcement-card span {
+        font-size: 12px;
+        color: #777;
+    }
+
+
+/* PANEL ORTAK KART */
+.panel-container {
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.panel-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px 35px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ff2f92;
+    margin-bottom: 20px;
+}
+
+/* FORM  */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 260px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.primary-btn {
+    background: #ff2f92;
+    border: none;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+    .primary-btn:hover {
+        background: #e91e7f;
+    }
+
+/*  TABLO  */
+.panel-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .panel-table th {
+        background: #ff2f92;
+        color: white;
+        padding: 10px;
+    }
+
+    .panel-table td {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+/*  DUYURU KARTI */
+.announcement-card {
+    border: 1px solid #ffd1e6;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
