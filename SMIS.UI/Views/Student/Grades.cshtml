@@ -1,31 +1,24 @@
-﻿<h1 class="page-title">Notlarım</h1>
+﻿@using SMIS.UI.Models
+@model IEnumerable<StudentLessonStatusVM>
 
-<div class="admin-wrapper">
+<h2> Notlarım & Devamsızlıklarım</h2>
 
-    <div class="admin-card">
-        <div class="section-title">Ders Başarılarım</div>
-
-        <div class="table-wrapper">
-            <table class="admin-table">
-                <thead>
-                    <tr>
-                        <th>Ders</th>
-                        <th>Not</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var grade in Model)
-                    {
-                        <tr>
-                            <td>@grade.LessonName</td>
-                            <td>@grade.Score</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-
-        <a asp-action="Index" class="back-link"> Panele Dön</a>
-    </div>
-
-</div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Ders</th>
+            <th>Not</th>
+            <th>Devamsızlık</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.LessonName</td>
+                <td>@item.Score</td>
+                <td>@item.AbsenceCount gün</td>
+            </tr>
+        }
+    </tbody>
+</table>

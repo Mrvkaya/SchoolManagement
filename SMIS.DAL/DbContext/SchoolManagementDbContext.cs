@@ -19,6 +19,22 @@ namespace SMIS.DAL.Context
         public DbSet<LessonSchedule> LessonSchedules { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<TeacherLesson> TeacherLessons { get; set; }
+        public DbSet<ParentStudent> ParentStudents { get; set; }
+        public DbSet<LessonAttendance> LessonAttendances { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ParentStudent>()
+                .HasOne(x => x.Parent)
+                .WithMany()
+                .HasForeignKey(x => x.ParentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ParentStudent>()
+                .HasOne(x => x.Student)
+                .WithMany()
+                .HasForeignKey(x => x.StudentId)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
     }
 }

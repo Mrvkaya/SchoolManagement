@@ -29,11 +29,10 @@ namespace SMIS.UI.Controllers
             if (user == null)
                 return Content("Kullanıcı bulunamadı");
 
-            HttpContext.Session.SetString("UserId", user.Id.ToString());
-            HttpContext.Session.SetString("Role", user.Role.ToString());
+            HttpContext.Session.SetInt32("UserId", user.Id);
+            HttpContext.Session.SetString("UserName", user.FullName);
+            HttpContext.Session.SetInt32("Role", (int)user.Role);
 
-            if (user.Role == UserRole.Parent && user.ChildStudentId.HasValue)
-                HttpContext.Session.SetString("ChildStudentId", user.ChildStudentId.Value.ToString());
 
             if (user.Role == UserRole.Admin)
                 return RedirectToAction("Index", "Admin");

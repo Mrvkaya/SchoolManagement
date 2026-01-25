@@ -11,6 +11,8 @@ namespace SMIS.Entities.Models
         public string Password { get; set; } 
         public UserRole Role { get; set; }
         public string FullName { get; set; }
-        public int? ChildStudentId { get; set; }
+        public string Email { get; set; } 
+        public string? ResetCode { get; set; }
+        public DateTime? ResetCodeExpire { get; set; }
     }
 }

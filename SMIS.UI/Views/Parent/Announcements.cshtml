@@ -1,0 +1,16 @@
+﻿<div class="page-container">
+
+    <div class="panel-card">
+        <div class="panel-title">Okul Duyuruları</div>
+
+        @foreach (var item in Model)
+        {
+            <div class="announcement-card">
+                <h4 style="color:#ff2f92">@item.Title</h4>
+                <small>@item.CreatedDate.ToString("dd.MM.yyyy HH:mm")</small>
+                <p>@item.Content</p>
+            </div>
+        }
+    </div>
+
+</div>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SMIS.BLL.Interface;
+using SMIS.BLL.Services;
 
 namespace SMIS.UI.Controllers
 {
@@ -8,15 +9,18 @@ namespace SMIS.UI.Controllers
         private readonly IGradeService _gradeService;
         private readonly ILessonScheduleService _lessonScheduleService;
         private readonly IAnnouncementService _announcementService;
+        private readonly ILessonAttendanceService _lessonAttendanceService;
 
         public StudentController(
             IGradeService gradeService,
             ILessonScheduleService lessonScheduleService,
-            IAnnouncementService announcementService)
+            IAnnouncementService announcementService,
+            ILessonAttendanceService lessonAttendanceService)
         {
             _gradeService = gradeService;
             _lessonScheduleService = lessonScheduleService;
             _announcementService = announcementService;
+            _lessonAttendanceService = lessonAttendanceService;
         }
 
         public IActionResult Index()
@@ -26,17 +30,27 @@ namespace SMIS.UI.Controllers
 
         public IActionResult Grades()
         {
-            var userIdString = HttpContext.Session.GetString("UserId");
+            int? studentId = HttpContext.Session.GetInt32("UserId");
 
-            if (string.IsNullOrEmpty(userIdString))
-            {
+            if (studentId == null)
                 return RedirectToAction("Login", "Account");
-            }
 
-            int studentId = int.Parse(userIdString);
+            var grades = _gradeService.GetByStudentId(studentId.Value);
+            var absences = _lessonAttendanceService.GetByStudentId(studentId.Value);
 
-            var grades = _gradeService.GetByStudentId(studentId);
-            return View(grades);
+            var model = grades.Select(g => new StudentLessonStatusVM
+            {
+                LessonName = g.LessonName,
+                Score = g.Score,
+                AbsenceCount = absences
+        .FirstOrDefault(a =>
+            a.LessonName.ToLower().Trim() ==
+            g.LessonName.ToLower().Trim()
+        )
+        ?.AbsenceCount ?? 0
+            }).ToList();
+
+            return View(model);
         }
 
         public IActionResult Schedule()

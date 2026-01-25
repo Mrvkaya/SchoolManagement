@@ -1,21 +1,28 @@
-﻿<div class="panel-container">
+﻿<h2> Yoklama Girişi</h2>
 
-    <div class="panel-card">
-        <div class="section-title"> Yoklama</div>
+<form asp-action="Attendance" method="post">
 
-        <form method="post">
-            @foreach (var student in Model)
-            {
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" name="presentIds" value="@student.Id" />
-                        @student.FullName
-                    </label>
-                </div>
-            }
+    <label>Ders Seç:</label>
+    <select name="lessonName" class="form-control mb-2">
+        @foreach (var lesson in ViewBag.Lessons)
+        {
+            <option value="@lesson">@lesson</option>
+        }
+    </select>
 
-            <button type="submit" class="primary-btn">Kaydet</button>
-        </form>
-    </div>
-    <a asp-action="Index" class="back-link">Panele Dön</a>
-</div>
+    <label>Öğrenciler:</label>
+
+    @foreach (var student in ViewBag.Students)
+    {
+        <div>
+            <input type="checkbox"
+                   name="absentStudentIds"
+                   value="@student.Id" />
+			@student.FullName
+        </div>
+    }
+
+    <button type="submit" class="btn btn-danger mt-3">
+        Devamsızlık Kaydet
+    </button>
+</form>

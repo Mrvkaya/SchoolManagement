@@ -11,17 +11,20 @@ namespace SMIS.UI.Controllers
         private readonly IAttendanceService _attendanceService;
         private readonly IAnnouncementService _announcementService;
         private readonly IUserService _userService;
+        private readonly ILessonAttendanceService _lessonAttendanceService;
 
         public TeacherController(
-            IGradeService gradeService,
-            IAttendanceService attendanceService,
-            IAnnouncementService announcementService,
-            IUserService userService)
+     IGradeService gradeService,
+     IAttendanceService attendanceService,
+     IAnnouncementService announcementService,
+     IUserService userService,
+     ILessonAttendanceService lessonAttendanceService)  
         {
             _gradeService = gradeService;
             _attendanceService = attendanceService;
             _announcementService = announcementService;
             _userService = userService;
+            _lessonAttendanceService = lessonAttendanceService; 
         }
 
         // Öğretmen Paneli
@@ -37,7 +40,17 @@ namespace SMIS.UI.Controllers
                 .Where(x => x.Role == UserRole.Student)
                 .ToList();
 
-            return View(students);
+            ViewBag.Students = students;
+
+            ViewBag.Lessons = new List<string>
+    {
+        "Matematik",
+        "Türkçe",
+        "Fen",
+        "Tarih"
+    };
+
+            return View();
         }
 
         //  Not Listesi
@@ -98,5 +111,20 @@ namespace SMIS.UI.Controllers
             _announcementService.Add(announcement);
             return RedirectToAction("Announcements");
         }
+
+        [HttpPost]
+        public IActionResult Attendance(string lessonName, List<int> absentStudentIds)
+        {
+            if (absentStudentIds != null)
+            {
+                foreach (var studentId in absentStudentIds)
+                {
+                    _lessonAttendanceService.IncreaseAbsence(studentId, lessonName);
+                }
+            }
+
+            return RedirectToAction("Attendance");
+        }
+
     }
 }

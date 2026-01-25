@@ -418,3 +418,66 @@ body {
     margin-bottom: 15px;
 }
 
+
+/* Ortak Panel Kartlarý */
+
+.page-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.panel-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 12px 30px rgba(255, 105, 180, 0.25);
+    margin-bottom: 30px;
+}
+
+.panel-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff2f92;
+    margin-bottom: 20px;
+}
+
+.panel-links a {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff5fa2, #ff2f92);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin: 8px;
+    transition: 0.3s;
+}
+
+    .panel-links a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255,105,180,.4);
+    }
+
+.pretty-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .pretty-table th {
+        background: #ff2f92;
+        color: white;
+        padding: 10px;
+    }
+
+    .pretty-table td {
+        padding: 10px;
+        border-bottom: 1px solid #ffd1e6;
+    }
+
+.announcement-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 15px;
+    box-shadow: 0 6px 18px rgba(255,105,180,.25);
+}

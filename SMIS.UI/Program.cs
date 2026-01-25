@@ -24,6 +24,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
 builder.Services.AddScoped<ITeacherLessonService, TeacherLessonService>();
 builder.Services.AddScoped<ILessonScheduleService, LessonScheduleService>();
+builder.Services.AddScoped<IParentStudentService, ParentStudentService>();
+builder.Services.AddScoped<ILessonAttendanceService, LessonAttendanceService>();
 
 
 builder.Services.AddControllersWithViews();

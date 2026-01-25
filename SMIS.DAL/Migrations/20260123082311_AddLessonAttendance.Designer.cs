@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SMIS.DAL.Context;
 
@@ -11,9 +12,11 @@ using SMIS.DAL.Context;
 namespace SMIS.DAL.Migrations
 {
     [DbContext(typeof(SchoolManagementDbContext))]
-    partial class SchoolManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260123082311_AddLessonAttendance")]
+    partial class AddLessonAttendance
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,29 +24,6 @@ namespace SMIS.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("LessonAttendance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AbsenceCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LessonName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LessonAttendances", (string)null);
-                });
 
             modelBuilder.Entity("SMIS.Entities.Models.Announcement", b =>
                 {
@@ -66,7 +46,7 @@ namespace SMIS.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Announcements", (string)null);
+                    b.ToTable("Announcements");
                 });
 
             modelBuilder.Entity("SMIS.Entities.Models.Attendance", b =>
@@ -88,7 +68,7 @@ namespace SMIS.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Attendances", (string)null);
+                    b.ToTable("Attendances");
                 });
 
             modelBuilder.Entity("SMIS.Entities.Models.Grade", b =>
@@ -113,7 +93,7 @@ namespace SMIS.DAL.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Grades", (string)null);
+                    b.ToTable("Grades");
                 });
 
             modelBuilder.Entity("SMIS.Entities.Models.LessonSchedule", b =>
@@ -137,7 +117,7 @@ namespace SMIS.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LessonSchedules", (string)null);
+                    b.ToTable("LessonSchedules");
                 });
 
             modelBuilder.Entity("SMIS.Entities.Models.ParentStudent", b =>
@@ -160,7 +140,7 @@ namespace SMIS.DAL.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("ParentStudents", (string)null);
+                    b.ToTable("ParentStudents");
                 });
 
             modelBuilder.Entity("SMIS.Entities.Models.TeacherLesson", b =>
@@ -184,7 +164,7 @@ namespace SMIS.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TeacherLessons", (string)null);
+                    b.ToTable("TeacherLessons");
                 });
 
             modelBuilder.Entity("SMIS.Entities.Models.User", b =>
@@ -208,7 +188,7 @@ namespace SMIS.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("SMIS.Entities.Models.Grade", b =>

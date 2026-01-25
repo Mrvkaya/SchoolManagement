@@ -1,0 +1,27 @@
+﻿<div class="page-container">
+
+    <div class="panel-card">
+        <div class="panel-title">Öğrenci Not ve Devamsızlık Bilgileri</div>
+
+        <table class="pretty-table">
+            <thead>
+                <tr>
+                    <th>Ders</th>
+                    <th>Not</th>
+                    <th>Devamsızlık</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.LessonName</td>
+                        <td>@item.Score</td>
+                        <td>@item.AbsenceCount gün</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
